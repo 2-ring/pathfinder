@@ -1,0 +1,131 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+
+	<!-- Located in input.html not base.html for simplicity so that only the title is only animated for the homepage -->
+	<script>
+		const title_element = document.getElementById('title'); 
+		//Uses html entity references to subvert issues displaying specific characters
+		const title_text = '<mark class="blue">&#60</mark>pathfinder<mark class="blue">&#62</mark>';
+		//Defines animation speed
+		const title_speed = 40
+		//Animates the title
+		typer(title_element, title_text, title_speed);
+	</script>
+
+	<!-- Connects to input.js -->
+  <script type="module" src="{{url_for('static', filename='input.js')}}"></script>
+	<!-- Connects to google maps api -->
+	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoiFIIfYIXagDmjGRshqEQGAk-8-CByvg&callback=initMap&v=weekly" defer></script>
+	<!-- Connects to axios api -->
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+	<!-- Contains the map and algorithm list, ensuring they are always side by side -->
+	<div class="container">
+	  <!-- Reserves a div for the map -->
+	  <div class="left-element" id="map-input"></div>
+		
+			<!-- Algorithm buttons and dropdowns -->
+		  <ul class="algs-right">
+	
+				<!-- Bruteforce -->
+		    <li>
+		      <button id="submit"> <!-- id="submit" enables an event listener for choosing the algorithm -->
+		      <mark class="blue">&#62</mark> bruteforce 
+					</button>
+		    </li>
+		    
+				<!-- Genetic -->
+				<li>
+		      <div class="dropdown">
+		        <button class="dropdown-btn"> genetic </button>
+	
+						<!-- Types of genetic algorithm -->
+		        <div class="dropdown-container">
+		          <button id="submit"><mark class="blue">-</mark> pure </button>
+		          <button id="submit"><mark class="blue">-</mark> seeded </button>
+							
+		        </div>
+		      </div>
+		    </li>
+				
+		    
+				<!-- Deterministic -->
+				<li>
+		      <div class="dropdown">
+		        <button class="dropdown-btn"> deterministic </button>
+	
+						<!-- Types of deterministic algorithm -->
+		        <div class="dropdown-container">
+		          <button id="submit"><mark class="blue">-</mark> christofides </button>
+		          <button id="submit"><mark class="blue">-</mark> mst-dfs </button>
+							
+		        </div>
+		      </div>
+		    </li>
+				
+		  </ul>
+		</div>
+	</div>
+	
+	<div id="info-container" class="center">
+		
+		<!-- Table -->
+		<table class="center"> <!-- class="center" centers the element within its parent div -->
+	
+		<!-- 	Algorithm names -->
+		  <tr>
+		    <th class="top left"></th>
+		    <th class="top"></th>
+				<th class="top">heuristic</th>
+				<th class="top">intractable</th>
+				<th class="top">deterministic</th>
+				<th class="top right">info</th>
+		  </tr>
+		
+		<!-- 	Bruteforce info	 -->
+		  <tr>
+		    <td class="left">bruteforce</td>
+		    <td>O(n!)</td>
+				<td></td>
+				<td>x</td>
+				<td>x</td>
+				<td class="right"><a class="button" href="#bruteforce">?</a></td>
+		  </tr>
+		
+		<!-- 	Genetic info	 -->
+			<tr>
+				<td class="left">genetic</td>
+				<td>O(n²)</td>
+		    <td>x</td>
+				<td></td>
+				<td></td>
+		    <td class="right"><a class="button" href="#genetic">?</a></td>
+			</tr>
+		
+		<!-- 	Christofides info	 -->
+		  <tr>
+		    <td class="left">christofides</td>
+		    <td>O(n³)</td>
+		    <td>x</td>
+				<td></td>
+				<td>x</td>
+		    <td class="right"><a class="button" href="#christofides">?</a></td>
+		  </tr>
+		
+		<!-- 	MST-DFS info -->
+			<tr>
+		    <td class="left bottom">mst-dfs</td>
+		    <td class="bottom">O(nlogn)</td>
+		    <td class="bottom">x</td>
+				<td class="bottom"></td>
+				<td class="bottom">x</td>
+		    <td class="right bottom"><a class="button" href="#mst-dfs">?</a></td>
+		  </tr>
+			
+		</table
+	</div>
+
+{% endblock %}
+			

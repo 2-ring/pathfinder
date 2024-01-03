@@ -1,0 +1,103 @@
+<html>
+  <head>
+
+		<!-- Links to stylesheet -->
+		<link rel="stylesheet" href="/static/styles.css">
+		<!-- Connects to typer.js which animates text to appear as if it is being typed -->
+		<script src="{{url_for('static', filename='typer.js')}}"></script>
+
+		<!-- Names tab -->
+    <title>&#60pathfinder&#62</title>
+
+
+  </head>
+  <body>
+
+		<!-- Main page title - links to home/input page -->
+		<a id='title' href='/'><mark class="blue">&#60</mark>pathfinder<mark class="blue">&#62</mark></a>
+
+		<!-- Popups done as separate divs to allow for more differentiated, complex styling and content in the future -->
+
+		<!-- Bruteforce popup -->
+		<div id="bruteforce" class="overlay"> <!-- A translucent div that fades over page while popup is shown -->
+			<div class="info_popup"> <!-- The container that contains the popup content -->
+				<h2>Bruteforce</h2> <!-- Popup title -->
+				<a class="close" href="#">&times;</a> <!-- Link formatted as close button that allows for the popup to be closed -->
+				<div class="content"> <!-- Contains the popup content -->
+					Otherwise referred to as a naïve approach, firstly it generates every possible cycle, referred to as permutations. It then calculates cost for each, returning the permutation with the lowest total.  
+					<br><br>
+					For this reason, it can be extremely slow with a time complexity of O(n!). By definition of being intractable, for graphs with a large number of nodes, the algorithm is unfeasible to compute. For a graph of 20 nodes there would be 6082 x 10¹⁶ permutations, taking over 1928 years to compute. It is for this reason that heuristic solutions are so important for solving the travelling salesman problem. However, bruteforce can also be very fast for problems with few nodes.
+				</div>
+			</div>
+		</div>
+		
+		<!-- Genetic algorithm popup -->
+		<div id="genetic" class="overlay">
+			<div class="info_popup">
+				<h2>Genetic</h2>
+				<a class="close" href="#">&times;</a>
+				<div class="content"> <!-- Contains info for both pure and hybrid genetic algorithms -->
+					<p>
+					Belonging to the wider class of evolutionary algorithms, the process of a genetic algorithm is inspired by natural selection, and hence contains an inherent element of randomness. Genetic algorithms are heuristic, meaning they are a quicker technique for finding an approximate solution where classical methods can be too slow. 
+					The algorithm performs comparatively very well on problems with a large number of nodes, while on problems with fewer nodes it is often outclassed. The compromise between speed and accuracy can be altered by refining the algorithms parameters, this version of the algorithm is optimised for accuracy. 
+					</p>
+					<h4>How does it work? </h4>
+					<p>
+					A population of random chromosomes (candidate solutions) are generated, and then ordered by fitness (a measure of quality) - fitter chromosomes are more likely to reproduce. While crossing offspring will mutate a set proportion of the time. Once a new population is generated via reproduction, the processes is repeated until any of a given set of terminating conditions are met. 
+					</p>
+					<h4>Pure vs seeded </h4>
+					<p>
+					In a pure genetic algorithm, the entire initial population is generated randomly, while when seeded some of the initial chromosomes are generated with another faster heuristic algorithm to help identify some good starting points, which should help the algorithm terminate sooner. This seeded genetic algorithm uses Christofides to seed the initial generation. 
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Christofides popup -->
+		<div id="christofides" class="overlay">
+			<div class="info_popup">
+				<h2>Christofides</h2>
+				<a class="close" href="#">&times;</a>
+				<div class="content">
+					<p>
+					Sometimes referred to as the Christofides–Serdyukov algorithm, it is heuristic and deterministic. Named after Nicos Christofides who discovered it in 1976, it was later independently discovered by Anatoliy I. Serdyukov. 
+					<br><br>
+					The algorithm still stands as the best polynomial time approximation algorithm with a time complexity of O(n³). The cost of the solution produced by the algorithm is within 3/2 of the optimum. 
+					</p>
+					<h4>How does it work? </h4>
+					<p>
+					Firstly, the minimum spanning tree (MST) is found. An MST is the tree that encompasses all nodes of graph with the lowest total weight. To find the MST, this version of Christofides uses Kruskal's algorithm. The algorithm works by, in ascending order of edge weight, adding edges to separate trees. If any two trees share any one node, they are merged to form a single tree. If an edge would connect any trees together that share two nodes skip adding the node. 
+					<br><br>
+					Next, all odd nodes in the MST are found (nodes with an odd number of neighbours). Next the perfect matching solution of all the odd nodes is found. Matching is where all nodes are connected in pairs with no overlap. Perfect matching is where the solution has the lowest total edge weight. I did this step using a bruteforce approach.  
+					<br><br>
+					All the edges from the minimum spanning tree and the perfect matching solution are combined to form one graph. Then 'shortcuts' are taken, meaning only keeping the first instance of the node in the path. For example, if a path was as follows: ABACDBE, it would be ‘shortcutted’ to ABCDE. Finally, Fleury's algorithm is used to find the cycle in the graph.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- MST-DFS popup -->
+		<div id="mst-dfs" class="overlay">
+			<div class="info_popup">
+				<h2>MST-DFS</h2>
+				<a class="close" href="#">&times;</a>
+				<div class="content">
+					<p>
+					A relatively uncommon approach to generating travelling salesman approximations. The algorithm is less accurate than comparable approximation algorithm such as Christofides, but it is faster. 
+					</p>
+					<h4>How does it work? </h4>
+					<p>
+					Firstly, the minimum spanning tree (MST) is found. An MST is the tree that encompasses all nodes of graph with the lowest total weight. To find the MST, this version of MST-DFS uses Kruskal's algorithm. The algorithm works by, in ascending order of edge weight, adding edges to separate trees. If any two trees share any one node, they are merged to form a single tree. If an edge would connect any trees together that share two nodes skip adding the node. 
+					<br><br>
+					Next, the MST undergoes a depth first traversal. The algorithm starts at the root (top) node of a tree and goes as far as it can down a given branch (path), then backtracks until it finds an unexplored path, and then explores it. This path is then ‘shortcutted, meaning only keeping the first instance of the node in the path. For example, if a path was as follows: ABACDBE, it would be ‘shortcutted’ to ABCDE. 
+					</p>
+				</div>
+			</div>
+		</div>
+	
+			
+		<!-- Allows for the base.html file to be extended -->
+	  {% block content %}{% endblock %}
+		
+	</body>
+</html>

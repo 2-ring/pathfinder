@@ -1,0 +1,22 @@
+<html>
+	<!-- 	Defines head because does not extend base.html -->
+  <head>
+
+		<!-- Links to stylesheet -->
+		<link rel="stylesheet" href="/static/styles.css">
+
+		<!-- Names tab -->
+    <title>&#60pathfinder&#62</title>
+
+
+  </head>
+  <body>
+
+		<!-- Inserts a loading gif -->
+		<img src="/static/loading.gif" id='loading'></img>
+
+		<!-- Connects to loading.js -->
+		<script src="{{url_for('static', filename='loading.js')}}"></script>	
+		
+	</body>
+</html>

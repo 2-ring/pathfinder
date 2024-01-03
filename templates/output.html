@@ -1,0 +1,40 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+
+	<!-- Uses jinja2 to unpack the data received for use in output.js -->
+	<script>
+		var path = JSON.parse('{{data[0]|tojson}}');
+		const method = JSON.parse('{{data[2]|tojson}}');
+	</script>
+	<!-- Connects to the output.js file -->
+	<script type="module" src="{{url_for('static', filename='output.js')}}"></script>
+
+
+	<!-- 	Defines the div to contain the output map -->
+	<div class="container" id="map-output"></div>
+
+	<!-- Connects to the google map api -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoiFIIfYIXagDmjGRshqEQGAk-8-CByvg&callback=initMap&v=weekly" defer></script>
+
+		<div id="feedback-container" class=center>
+			<!-- Defines the location for the text based results -->
+			<p class="feedback"></p>
+			
+			<script>
+				const feedback_element = document.getElementById("feedback-container").getElementsByTagName("p")[0];
+				// Uses the data recived to create unique feedback
+				const feedback_text = 'Took <mark class="blue">{{data[1]}}</mark> seconds using <mark class="blue">{{data[2]}}</mark>{{data[3]}}. The ({{data[0]|length}} node) solution found was <mark class="blue">{{data[4]|round(2)}}km</mark> long, {{data[5]}}. Click <mark class="blue">&#60</mark>pathfinder<mark class="blue">&#62</mark> to enter a new problem!';
+				// Defines the speed of the animation
+				const feedback_speed = 20
+				// Animates the output of the text based feedback
+				typer(feedback_element, feedback_text, feedback_speed);
+			</script>
+			
+		</div>
+
+	<!-- 	Creates the div for the link to download the path as a text file -->
+	<div class="download_popup">To download path click </div>
+
+
+{% endblock %}
