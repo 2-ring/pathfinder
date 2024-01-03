@@ -1,1 +1,1 @@
-If you are evluating the quality of code, the majority of the technical implementation is contained within the modules/algorithms.py and modules/toolbox.py file—so that could be a good place to start.
+If you are evluating the quality of code, the majority of the technical implementation is contained within the modules/algorithms.py and modules/toolbox.py files—so that could be a good place to start.
