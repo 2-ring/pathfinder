@@ -1,0 +1,320 @@
+/* ========== Text Styling ========== */
+
+
+/* Importing font */
+ @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;2000&display=swap');
+
+/*Defining default font and backround color*/
+ body, button, a {
+     background-color:#1c2333;
+     font-family: 'IBM Plex Mono', monospace;
+     color:white;
+ }
+
+/* Colors text blue */
+ mark.blue, .blue{
+     color:#5192c9;
+     background: none;
+ }
+
+ ul{
+     list-style-type: none;
+ }
+
+/* Removing default styling and setting text size */
+ a, button{
+     font-size: 3vw;
+     background-color: Transparent;
+     border: none;
+     cursor:pointer;
+     text-decoration: none;
+ }
+
+ p{
+    font-size: 2vw;
+ }
+
+/* Defining hover color for clickables */
+ a:hover, button:hover {
+     color:#bab0b0;
+ }
+
+/* Styling main title */
+ #title {
+     font-size: 7vw;
+     min-height: 15%;
+     display: block;
+     text-align: center;
+ }
+
+/* Styling text on error page */
+ #error {
+    text-align: center;
+ }
+
+
+/* ========== Map Styling ========== */
+
+
+ #map-input {
+    /* Size */
+     height: 100%;
+     width: 40%;
+    /* Location (left) */
+     padding: 10%;
+     float:left;
+     margin-left: 5%;
+ }
+
+ #map-output {
+    /* Size */
+     height: 60%;
+     width: 95%;
+    /* Location (center) */
+     margin: auto;
+     margin-top: 3%;
+ }
+
+
+/* ========== Image Styling ========== */
+
+
+/* Centering loading gif */
+ #loading {
+     margin: auto;
+     display: block;
+ }
+
+
+/* ========== Class Styling ========== */
+
+
+/* Centers images horizontally */
+ .center{
+     margin-left: auto;
+     margin-right: auto;
+     display: block;
+ }
+
+
+/* ========== Div Styling ========== */
+
+
+/* Container for map and algorithms */
+ .container {
+     position: static;
+     padding: 0;
+     margin-top: 2%;
+     height:30%;
+     width:100%;
+ }
+
+/* Floating map left */
+ .map-left {
+     display: inline-block;
+     float: left;
+ }
+
+/* Floating algorithm list right */
+ .algs-right {
+     position: static;
+     display: inline-block;
+     float: left;
+ }
+
+/* Defines containers of the same colour and shape */
+ #feedback-container, #info-container {
+    /* Rounds corners */
+     border-radius: 10px;
+     width: 80%;
+     background-color: #2b3245;
+    /* Location for feedback container */
+     position: static;
+     margin-top: 4%;
+     margin-bottom: 3%;
+    /* Padding for feedback container */
+     padding-left: 5%;
+     padding-right: 5%;
+     padding-top: 1%;
+     padding-bottom: 1%;
+ }
+
+/* Overriding some of the feedback container styling */
+ #info-container{
+     margin-top: 23%;
+     padding: 1%;
+ }
+
+
+/* ========== Dropdown Styling ========== */
+
+
+ .dropdown-btn {
+     border: none;
+     background: none;
+     cursor: pointer;
+     outline: none;
+ }
+
+ .dropdown-btn::before {
+     display: inline-block;
+     content: '\003E';
+     transition: transform 0.3s;
+     color: #5192c9;
+ }
+
+ .dropdown-container {
+     display: none;
+     padding-left: 0px;
+ }
+
+ .dropdown.is-open .dropdown-btn:before {
+     transform: rotate(90deg);
+ }
+
+ .dropdown.is-open .dropdown-container {
+     display: block;
+ }
+
+ .dropdown-container button {
+     display: block;
+ }
+
+
+/* ========== Table Styling ========== */
+
+
+ table{
+     border-collapse: collapse;
+     border: 1px solid;
+     border-color: #5192c9;
+ }
+
+/* Styling elements contained within the info table */
+ th, td, td a{
+    /* Text styling */
+     font-size: 1.75vw;
+     text-align: center;
+    /* Default padding */
+     padding-left: 1vw;
+     padding-right: 1vw;
+     padding-top: 0.4vh;
+     padding-bottom: 0.4vh;
+ }
+
+/* Adjusting padding for specific rows and columns */
+ .left {
+    padding-left: 2vw;
+ }
+
+ .right {
+    padding-right: 2w;
+ }
+
+ .top {
+    padding-top: 2vw;
+     padding-bottom: 0.8vw;
+ }
+
+ .bottom {
+    padding-bottom: 2vw;
+ }
+
+
+/* ========== Popup Styling ========== */
+
+
+/* Fades over entire page when info popup is opened */
+ .overlay {
+    /* Position */
+     position: fixed;
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+    /* Colouring and opacity */
+     background: rgba(0, 0, 0, 0.7);
+     transition: opacity 750ms;
+     visibility: hidden;
+     opacity: 0;
+    /* Above download popup but below info popup */
+     z-index: 2;
+ }
+
+ .overlay:target {
+     visibility: visible;
+     opacity: 1;
+ }
+
+/* Large popup that convers most of page */
+ .info_popup{
+    /* Centers the div */
+     margin: 0;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     -ms-transform: translate(-50%, -50%);
+     transform: translate(-50%, -50%);
+     padding: 3%;
+     background: #2b3245;
+     border-radius: 5px;
+     width: 50%;
+    /* Appears on top */
+     z-index: 3;
+ }
+
+/* Styles close button */
+ .info_popup .close{
+    /* Location */
+     position: absolute;
+     top: 20px;
+     right: 30px;
+    /* Size */
+     font-size: 30px;
+     text-decoration: none;
+ }
+
+/* Styling text inside divs */
+ .info_popup p{
+    font-size:1vw;
+ }
+
+ .download_popup a, .download_popup{
+    opacity:1;
+    font-size:1.2vw;
+ }
+
+/* Class that slows the transition of opening a popup */
+ .slow_transition{
+     transition-duration: 1750ms;
+ }
+
+/* Small popup in the bottom right */
+ .download_popup {
+    /* Location */
+     width: 20%;
+     position: sticky;
+     bottom: 1vw;
+     right: 1vw;
+     float:right;
+     text-align: center;
+     padding: 1%;
+     background: #435069;
+     border-radius: 5px;
+     z-index: 1;
+    /* Animation */
+     animation: fadeIn 4s;
+     opacity: 0.9;
+ }
+
+/* Defining fadeIn animation */
+ @keyframes fadeIn {
+     from {
+        opacity: 0;
+		 }
+	 
+     to {
+        opacity:0.9;
+		 }
+	 
+ }
