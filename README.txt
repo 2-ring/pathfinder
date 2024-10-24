@@ -1,4 +1,4 @@
-![til](./app/other/pathfinder-demo.gif)
+![til](./other/pathfinder-demo.gif)
 
 Uses the Flask framework.
 
