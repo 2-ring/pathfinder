@@ -2,18 +2,11 @@ sometimes christofides will only return
 two of the same node because fluerys 
 failed and returned [0]
 
-maybe (not sure if this is still an issue) 
-there will be a problem where the algorithm 
-is ran on the previous data set rather than 
-the new one
+very rarely, due to network errors, there will 
+be a problem where the algorithm is ran on the 
+previous data set rather than the new one
 
-there is a version of the above bug where 
-sometimes the algorithm wil run on the 
-previous coordinates and bruteforce on the
-new
-
-sometimes (not sure where it originates) a 
-optimal solution is calculated to be 
-marginally different from the bruteforce 
-solution (like 0.00000023km) when it is not
+sometimes an optimal solution is incorrectly
+calculated to be marginally different from a bruteforce 
+solution (like 0.00000023km), likley a rounding error
 
