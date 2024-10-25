@@ -1,5 +1,4 @@
-![](https://github.com/2-ring/pathfinder/pathfinder-demo.gif)
-
+![](https://github.com/2-ring/pathfinder/blob/main/other/pathfinder-demo.gif)
 
 Uses the Flask framework.
 
